@@ -41,6 +41,15 @@ done
 # we work in the working dir
 go_to_git_case_work_dir
 
+function mktemp {
+    p="$2"
+    dir=$RANDOM
+
+    mkdir "$p/$dir"
+
+    echo "$p/$dir/tmpfile.$$"
+}
+
 DESC="$@"
 case "$DESC" in
     --stdin)

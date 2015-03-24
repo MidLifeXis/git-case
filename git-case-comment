@@ -19,6 +19,15 @@ FILE_BASE="$ID/files"
 # we work in the working dir
 go_to_git_case_work_dir
 
+function mktemp {
+    p="$2"
+    dir=$RANDOM
+
+    mkdir "$p/$dir"
+
+    echo "$p/$dir/tmpfile.$$"
+}
+
 COMMENT_FILE=$(mktemp -p "$GIT_CASE_WORK_DIR")
 touch "$COMMENT_FILE"
 DATE_2822=$(date -r "$COMMENT_FILE" --rfc-822)

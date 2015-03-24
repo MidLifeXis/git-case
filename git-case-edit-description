@@ -14,6 +14,15 @@ shortID=$(gen_short_case_id "$ID")
 # we work in the working dir
 go_to_git_case_work_dir
 
+function mktemp {
+    p="$2"
+    dir=$RANDOM
+
+    mkdir "$p/$dir"
+
+    echo "$p/$dir/tmpfile.$$"
+}
+
 DESC_FILE="$ID/description"
 TEMP_FILE=$(mktemp -p "$GIT_CASE_WORK_DIR")
 OLD=$(git show "$GIT_CASE_HEAD:$DESC_FILE")
