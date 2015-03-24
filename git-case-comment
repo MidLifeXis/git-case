@@ -21,7 +21,7 @@ go_to_git_case_work_dir
 
 COMMENT_FILE=$(mktemp -p "$GIT_CASE_WORK_DIR")
 touch "$COMMENT_FILE"
-DATE_2822=$(date -r "$COMMENT_FILE" --rfc-2822)
+DATE_2822=$(date -r "$COMMENT_FILE" --rfc-822)
 TIMESTAMP=$(date -r "$COMMENT_FILE" "+%s")
 
 TEXT_FILE=
