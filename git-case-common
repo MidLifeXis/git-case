@@ -36,7 +36,16 @@ echo "${LOCAL_GIT_VERSION}" | tr '.' ' ' \
     || die "we need git 1.5.5 or better"
 
 if ! ( echo $HOSTNAME | grep -q '.\..' ) ; then
-	export HOSTNAME=$(hostname --fqdn)
+        case "`uname -s`" in
+            MINGW* )
+                if ! test -z "$USERDNSDOMAIN" ; then
+                    export HOSTNAME="$HOSTNAME.$USERDNSDOMAIN"
+                fi
+                ;;
+            * )
+        	export HOSTNAME=$(hostname --fqdn)
+                ;;
+        esac
 fi
 echo $HOSTNAME | grep -q '.\..' \
 || die "HOSTNAME '$HOSTNAME' is not a fully qualified comain name"
